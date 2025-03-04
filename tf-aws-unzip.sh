@@ -17,9 +17,13 @@ rm -rf awscliv2.zip aws/
 
 # Install Terraform
 echo "Installing Terraform..."
-sudo apt install -y software-properties-common
-sudo apt-add-repository --yes --update ppa:hashicorp/terraform
-sudo apt install terraform -y
+sudo apt update && sudo apt install -y wget
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo tee /etc/apt/trusted.gpg.d/hashicorp.asc
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+sudo apt update && sudo apt install -y terraform
+
+
 
 # Verify Installations
 echo "Verifying installations..."
