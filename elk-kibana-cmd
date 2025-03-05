@@ -1,0 +1,61 @@
+sudo apt update
+sudo apt install -y openjdk-21-jdk
+java -version
+sudo apt-get -y install nginx
+sudo apt install nginx
+sudo apt update
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.2.0-amd64.deb
+sudo dpkg -i elasticsearch-7.2.0-amd64.deb
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.2.0-amd64.deb
+sudo dpkg -i kibana-7.2.0-amd64.deb
+sudo apt-get -y apt-transport-https
+sudo apt-get update && sudo apt-get -y install apt-transport-https
+sudo dpkg -i logstash-7.2.0.deb
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.2.0-amd64.deb
+sudo dpkg -i filebeat-7.2.0-amd64.deb
+sudo wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.17.3-windows-x86_64.msi
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.17.3-linux-x86_64.tar.gz
+tar xzvf filebeat-8.17.3-linux-x86_64.tar.gz
+tar xzvf filebeat-8.17.3-linux-x86_64.tar.gz
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.17.3-linux-x86_64.tar.gz
+tar xzvf filebeat-8.17.3-linux-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.17.3-amd64.deb
+sudo dpkg -i filebeat-8.17.3-amd64.deb
+sudo systemctl enable filebeat
+sudo vi /etc/elasticsearch/elasticsearch.yml
+sudo systemctl start elasticsearch
+sudo vi /etc/elasticsearch/elasticsearch.yml
+sudo systemctl start elasticsearch
+sudo systemctl status elasticsearch
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+sudo systemctl status elasticsearch
+curl -X GET "http://localhost:9200" -u elastic
+sudo vi /etc/elasticsearch/elasticsearch.yml
+sudo systemctl restart elasticsearch
+sudo vi /etc/kibana/kibana.yml
+sudo systemctl restart kibana
+sudo systemctl status elasticsearch
+sudo systemctl status kibana
+sudo netstat -tulnp | grep 5601
+ss -tulnp | grep 5601
+sudo apt install -y apache2-utils
+sudo nano /etc/nginx/htpasswd.users
+sudo nano /etc/nginx/sites-available/kibana
+sudo vi /etc/nginx/sites-available/default
+sudo nano /etc/nginx/sites-available/kibana
+sudo systemctl start nginx
+sudo systemctl status nginx
+sudo nginx -t
+sudo systemctl reload nginx
+sudo ufw reload
+sudo ufw enable
+sudo ufw allow 80/tcp
+sudo ufw allow 5601/tcp
+sudo ufw allow 9200/tcp
+sudo netstat -tulnp | grep -E "80|5601|9200"
+ss -tulnp | grep -E "80|5601|9200"
+sudo systemctl restart nginx
+sudo systemctl restart kibana
+sudo systemctl restart elasticsearch
+curl -I http://localhost:80
