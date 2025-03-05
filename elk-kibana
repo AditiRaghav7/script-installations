@@ -1,0 +1,64 @@
+#!/bin/bash
+
+echo "Starting ELK Stack Installation & Setup..."
+
+# Update system packages
+echo "Updating system packages..."
+sudo apt update -y && sudo apt upgrade -y
+
+# Install necessary dependencies
+echo "Installing dependencies..."
+sudo apt install -y openjdk-21-jdk apt-transport-https nginx apache2-utils wget curl
+
+# Download and Install Elasticsearch
+echo "Installing Elasticsearch..."
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.2.0-amd64.deb
+sudo dpkg -i elasticsearch-7.2.0-amd64.deb
+rm elasticsearch-7.2.0-amd64.deb
+
+# Enable and Start Elasticsearch
+echo "Enabling and starting Elasticsearch..."
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+
+# Download and Install Kibana
+echo "Installing Kibana..."
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.2.0-amd64.deb
+sudo dpkg -i kibana-7.2.0-amd64.deb
+rm kibana-7.2.0-amd64.deb
+
+# Enable and Start Kibana
+echo "Enabling and starting Kibana..."
+sudo systemctl enable kibana
+sudo systemctl start kibana
+
+# Configure Firewall Rules
+echo "Configuring firewall..."
+sudo ufw allow 80/tcp     # Allow HTTP (Nginx)
+sudo ufw allow 5601/tcp   # Allow Kibana
+sudo ufw allow 9200/tcp   # Allow Elasticsearch
+sudo ufw reload
+
+# Restart and enable services
+echo "Restarting services..."
+sudo systemctl restart elasticsearch kibana nginx
+sudo systemctl enable elasticsearch kibana nginx
+
+# Check service status
+echo "Checking service status..."
+sudo systemctl status elasticsearch --no-pager
+sudo systemctl status kibana --no-pager
+sudo systemctl status nginx --no-pager
+
+# Check listening ports
+echo "Checking open ports..."
+sudo netstat -tulnp | grep -E "80|5601|9200"
+
+# Test Elasticsearch and Kibana accessibility
+echo "Testing Elasticsearch..."
+curl -X GET "http://localhost:9200"
+
+echo "Testing Kibana..."
+curl -I http://localhost:5601
+
+echo "ELK Stack Installation & Setup Completed Successfully!"
