@@ -24,6 +24,9 @@ fi
 tar -xzf $ELK_TAR
 cd elasticsearch-${ELK_VERSION}/
 
+# Check Elasticsearch version
+./bin/elasticsearch --version
+
 # Create a systemd service file
 sudo tee /etc/systemd/system/elasticsearch.service > /dev/null <<EOF
 [Unit]
