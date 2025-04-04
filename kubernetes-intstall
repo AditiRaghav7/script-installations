@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "🔄 Updating package lists..."
+sudo apt update
+
+echo "📦 Installing required dependencies..."
+sudo apt install -y apt-transport-https ca-certificates curl
+
+echo "🔑 Adding Google Cloud public signing key..."
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo tee /etc/apt/keyrings/kubernetes-apt-keyring.asc >/dev/null
+
+echo "📚 Adding Kubernetes repository..."
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.asc] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+echo "🔄 Updating package lists again..."
+sudo apt update
+
+echo "🚀 Installing kubectl..."
+sudo apt install -y kubectl
+
+echo "✅ Verifying kubectl installation..."
+kubectl version --client
